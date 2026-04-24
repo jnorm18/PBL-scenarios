@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Capacity Projection Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+</head>
+
+<body>
+  <header>
+    <h1>Power capacity projections</h1>
+    <p>
+      Showing variables containing <code>Capacity|Electricity</code>.
+      Missing year values are skipped, not treated as zero.
+    </p>
+  </header>
+
+  <section class="controls">
+    <label>
+      Region:
+      <select id="regionSelect"></select>
+    </label>
+
+    <div>
+      <div class="control-title">Scenarios</div>
+      <div id="scenarioControls" class="checkbox-row"></div>
+    </div>
+  </section>
+
+  <main id="chartGrid"></main>
+
+  <script src="script.js"></script>
+</body>
+</html>
