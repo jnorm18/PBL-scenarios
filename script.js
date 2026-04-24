@@ -124,14 +124,20 @@ function renderCharts() {
     selectedScenarios.has(row.Scenario)
   );
 
-  const technologies = [...new Set(regionRows.map(row =>
-    technologyFromVariable(row.Variable)
-  ))].sort();
+const preferredTechOrder = ["Coal", "Gas", "Solar", "Wind"];
 
-  technologies.forEach(tech => {
-    const techRows = regionRows.filter(row =>
-      technologyFromVariable(row.Variable) === tech
-    );
+const technologies = [...new Set(regionRows.map(row =>
+  technologyFromVariable(row.Variable)
+))].sort((a, b) => {
+  const ai = preferredTechOrder.indexOf(a);
+  const bi = preferredTechOrder.indexOf(b);
+
+  if (ai !== -1 && bi !== -1) return ai - bi;
+  if (ai !== -1) return -1;
+  if (bi !== -1) return 1;
+
+  return a.localeCompare(b);
+});
 
     const traces = techRows
       .map(buildTrace)
